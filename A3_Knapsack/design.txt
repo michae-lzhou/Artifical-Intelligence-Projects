@@ -1,0 +1,45 @@
+1. Define the problem as a genetic algorithm
+    - Structure of the chromosome
+        * a tuple of values for each "box": the first list of values are
+          randomly generated priority to introduce diversity and randomness; the
+          second list of values are normalized weight-to-value ratios.
+    - Selection of an initial population
+        * the selection of the initial population will be randomly selecting
+          boxes based on their priority.
+        * However this will not generate valid boxes most of the time (not
+          using the full capacity -or- exceeding the weight limit).
+        * In order to deal with this problem, we will introduce a
+          pre-processing function to "validate" each individual. For each
+          individual, we will perform A* search to generate a valid chromosome
+          combination (a valid chromosome combination is defined as a
+          combination of boxes that is within X lbs of the limit) <--- tweak X
+          based on metrics
+        * The A* search will: 1) remove boxes if above weight limit (removing
+          the lowest weight-to-value ratio'ed boxes) 2) add boxes if under valid
+          weight (within X lbs)
+            o Cost function: adding a box (-current total value + current total
+            weight (penalty if exceeded) ; removing a box (....)
+            o Heuristic funtion: priority percentage + weight-to-value ratio
+    - A fitness function
+        * higher total backpack value, lower total backpack weight
+    - The selection process
+        * rank based selection, cull the population by 50%
+    - The genetic operators
+        * single point mutation
+        * multi point mutation
+        * single point cross over
+        * multi point cross over
+    - A solution test
+        * Last possible child, cannot have higher total cost?
+    - Evolutionary measures
+        * Printing out the intermediary states?
+        * fitness graph with data points, general slope, statistics at the end?
+        * fitness plateaus, variability in the population flattens
+        * store the average fitness value, potentially max and min for each gen
+        * genetic metrics (of each chromosome)
+
+2. Provide the genome for the problem
+
+3. Define all the fringe operations
+
+4. Cull your population by 50% at every generation
